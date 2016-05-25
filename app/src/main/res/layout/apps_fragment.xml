@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorAccent"
-    tools:context="info.androidhive.materialtabs.fragments.TwoFragment">
+    android:background="@color/pageBackground"
+    tools:context=".fragments.AppsFragment">
 
     <TextView
         android:layout_width="wrap_content"

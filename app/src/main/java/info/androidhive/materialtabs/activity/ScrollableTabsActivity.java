@@ -17,12 +17,12 @@ import info.androidhive.materialtabs.fragments.EightFragment;
 import info.androidhive.materialtabs.fragments.FiveFragment;
 import info.androidhive.materialtabs.fragments.FourFragment;
 import info.androidhive.materialtabs.fragments.NineFragment;
-import info.androidhive.materialtabs.fragments.OneFragment;
+import info.androidhive.materialtabs.fragments.DeviceFragment;
 import info.androidhive.materialtabs.fragments.SevenFragment;
 import info.androidhive.materialtabs.fragments.SixFragment;
 import info.androidhive.materialtabs.fragments.TenFragment;
-import info.androidhive.materialtabs.fragments.ThreeFragment;
-import info.androidhive.materialtabs.fragments.TwoFragment;
+import info.androidhive.materialtabs.fragments.NetworkFragment;
+import info.androidhive.materialtabs.fragments.AppsFragment;
 
 public class ScrollableTabsActivity extends AppCompatActivity {
 
@@ -48,9 +48,9 @@ public class ScrollableTabsActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new OneFragment(), "ONE");
-        adapter.addFrag(new TwoFragment(), "TWO");
-        adapter.addFrag(new ThreeFragment(), "THREE");
+        adapter.addFrag(new DeviceFragment(), "ONE");
+        adapter.addFrag(new AppsFragment(), "TWO");
+        adapter.addFrag(new NetworkFragment(), "THREE");
         adapter.addFrag(new FourFragment(), "FOUR");
         adapter.addFrag(new FiveFragment(), "FIVE");
         adapter.addFrag(new SixFragment(), "SIX");

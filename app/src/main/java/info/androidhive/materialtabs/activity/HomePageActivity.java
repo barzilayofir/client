@@ -15,15 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.androidhive.materialtabs.R;
-import info.androidhive.materialtabs.fragments.OneFragment;
-import info.androidhive.materialtabs.fragments.ThreeFragment;
-import info.androidhive.materialtabs.fragments.TwoFragment;
+import info.androidhive.materialtabs.fragments.AppsFragment;
+import info.androidhive.materialtabs.fragments.DeviceFragment;
+import info.androidhive.materialtabs.fragments.NetworkFragment;
 
 public class HomePageActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private TextView mTabDevice;
+    private TextView mTabApps;
+    private TextView mTabNetwork;
+    private List<TextView> mTabTextViews = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,35 +51,67 @@ public class HomePageActivity extends AppCompatActivity {
      */
     private void setupTabIcons() {
 
-        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabOne.setText("ONE");
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_favourite, 0, 0);
-        tabLayout.getTabAt(0).setCustomView(tabOne);
+        mTabDevice = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        mTabDevice.setText(R.string.device);
+        mTabDevice.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_favourite, 0, 0);
+        tabLayout.getTabAt(0).setCustomView(mTabDevice);
+        mTabDevice.setTextColor(getResources().getColor(R.color.pageBackground));
 
-        TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabTwo.setText("TWO");
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_call, 0, 0);
-        tabLayout.getTabAt(1).setCustomView(tabTwo);
+        mTabApps = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        mTabApps.setText(R.string.apps);
+        mTabApps.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_call, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(mTabApps);
 
-        TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-        tabThree.setText("THREE");
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_contacts, 0, 0);
-        tabLayout.getTabAt(2).setCustomView(tabThree);
+        mTabNetwork = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        mTabNetwork.setText(R.string.network);
+        mTabNetwork.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab_contacts, 0, 0);
+        tabLayout.getTabAt(2).setCustomView(mTabNetwork);
+
+        mTabTextViews.add(mTabDevice);
+        mTabTextViews.add(mTabApps);
+        mTabTextViews.add(mTabNetwork);
     }
 
     /**
      * Adding fragments to ViewPager
+     *
      * @param viewPager
      */
-    private void setupViewPager(ViewPager viewPager) {
+    private void setupViewPager(final ViewPager viewPager) {
         viewPager.setClipToPadding(false);
         viewPager.setPageMargin(24);
         viewPager.setPadding(48, 8, 48, 8);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new OneFragment(), "ONE");
-        adapter.addFrag(new TwoFragment(), "TWO");
-        adapter.addFrag(new ThreeFragment(), "THREE");
+        final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new DeviceFragment(), "ONE");
+        adapter.addFrag(new AppsFragment(), "TWO");
+        adapter.addFrag(new NetworkFragment(), "THREE");
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Fragment selected = adapter.getItem(position);
+                int color = 0;
+                for (int i = 0; i < mTabTextViews.size(); i++) {
+                    TextView textView = mTabTextViews.get(i);
+                    if (i == position) {
+                        color = getResources().getColor(R.color.pageBackground);
+                    } else {
+                        color = getResources().getColor(R.color.textUnselected);
+                    }
+                    textView.setTextColor(color);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

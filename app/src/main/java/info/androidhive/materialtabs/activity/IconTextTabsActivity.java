@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.androidhive.materialtabs.R;
-import info.androidhive.materialtabs.fragments.OneFragment;
-import info.androidhive.materialtabs.fragments.ThreeFragment;
-import info.androidhive.materialtabs.fragments.TwoFragment;
+import info.androidhive.materialtabs.fragments.DeviceFragment;
+import info.androidhive.materialtabs.fragments.NetworkFragment;
+import info.androidhive.materialtabs.fragments.AppsFragment;
 
 public class IconTextTabsActivity extends AppCompatActivity {
 
@@ -53,9 +53,9 @@ public class IconTextTabsActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new OneFragment(), "ONE");
-        adapter.addFrag(new TwoFragment(), "TWO");
-        adapter.addFrag(new ThreeFragment(), "THREE");
+        adapter.addFrag(new DeviceFragment(), "ONE");
+        adapter.addFrag(new AppsFragment(), "TWO");
+        adapter.addFrag(new NetworkFragment(), "THREE");
         viewPager.setAdapter(adapter);
     }
 

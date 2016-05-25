@@ -30,6 +30,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="btn_home_page">Home Page</string>
     <string name="title_activity_home_page">Home Page</string>
+    <string name="device">DEVICE</string>
+    <string name="apps">APPS</string>
+    <string name="network">NETWORK</string>
 
 
 </resources>

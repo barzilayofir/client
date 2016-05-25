@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.androidhive.materialtabs.R;
-import info.androidhive.materialtabs.fragments.OneFragment;
-import info.androidhive.materialtabs.fragments.ThreeFragment;
-import info.androidhive.materialtabs.fragments.TwoFragment;
+import info.androidhive.materialtabs.fragments.DeviceFragment;
+import info.androidhive.materialtabs.fragments.NetworkFragment;
+import info.androidhive.materialtabs.fragments.AppsFragment;
 
 public class SimpleTabsActivity extends AppCompatActivity {
 
@@ -42,9 +42,9 @@ public class SimpleTabsActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThreeFragment(), "THREE");
+        adapter.addFragment(new DeviceFragment(), "ONE");
+        adapter.addFragment(new AppsFragment(), "TWO");
+        adapter.addFragment(new NetworkFragment(), "THREE");
         viewPager.setAdapter(adapter);
     }
 
